@@ -16,7 +16,7 @@ BuildRequires:	python3-pillow
 BuildRequires:	python3-pdfrw
 Requires:	python3-pillow
 
-%python_provide python3-img2pdf
+%{?python_provide:%python_provide python3-img2pdf}
 
 %description
 Python 3 library and command line utility img2pdf for losslessly converting
