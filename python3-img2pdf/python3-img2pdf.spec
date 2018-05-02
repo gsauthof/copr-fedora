@@ -1,6 +1,13 @@
 %global         srcname  img2pdf
+%global         desc   Python 3 library and command line utility img2pdf for losslessly converting\
+a bunch of image files into a PDF file. That means that the images\
+are either inserted into the PDF as-is or they are recompressed using\
+lossless compression. Thus, img2pdf usually runs faster and may yield\
+smaller PDF files than an ImageMagick convert command.\
+\
+The img2pdf command complements the pdfimages command.
 
-Name:		python3-img2pdf
+Name:		python-img2pdf
 Version:	0.2.4
 Release:	1%{?dist}
 Summary:	Lossless images to PDF conversion library and command
@@ -16,16 +23,15 @@ BuildRequires:	python3-pillow
 BuildRequires:	python3-pdfrw
 Requires:	python3-pillow
 
+%description
+%{desc}
+
+%package -n python3-img2pdf
+Summary:        %{summary}
 %{?python_provide:%python_provide python3-img2pdf}
 
-%description
-Python 3 library and command line utility img2pdf for losslessly converting
-a bunch of image files into a PDF file. That means that the images
-are either inserted into the PDF as-is or they are recompressed using
-lossless compression. Thus, img2pdf usually runs faster and may yield
-smaller PDF files than an ImageMagick convert command.
-
-The img2pdf command complements the pdfimages command.
+%description -n python3-img2pdf
+%{desc}
 
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
@@ -41,7 +47,7 @@ The img2pdf command complements the pdfimages command.
 %check
 %{__python3} setup.py test
 
-%files
+%files -n python3-img2pdf
 %{_bindir}/%{srcname}
 %{python3_sitelib}/%{srcname}.py
 %{python3_sitelib}/jp2.py
