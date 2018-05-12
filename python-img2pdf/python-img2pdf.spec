@@ -7,21 +7,21 @@ smaller PDF files than an ImageMagick convert command.\
 \
 The img2pdf command complements the pdfimages command.
 
-Name:		python-img2pdf
-Version:	0.2.4
-Release:	1%{?dist}
-Summary:	Lossless images to PDF conversion library and command
+Name:           python-img2pdf
+Version:        0.2.4
+Release:        1%{?dist}
+Summary:        Lossless images to PDF conversion library and command
 
-License:	LGPLv3+
-URL:		https://pypi.org/project/img2pdf
-Source0:	https://files.pythonhosted.org/packages/source/i/%{srcname}/%{srcname}-%{version}.tar.gz
+License:        LGPLv3+
+URL:            https://pypi.org/project/img2pdf
+Source0:        https://files.pythonhosted.org/packages/source/i/%{srcname}/%{srcname}-%{version}.tar.gz
 
 BuildArch:      noarch
 
-BuildRequires:	python3-devel
-BuildRequires:	python3-pillow
-BuildRequires:	python3-pdfrw
-Requires:	python3-pillow
+BuildRequires:  python3-devel
+BuildRequires:  python3-pillow
+BuildRequires:  python3-pdfrw
+Requires:       python3-pillow
 
 %description
 %{desc}
