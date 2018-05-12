@@ -38,6 +38,7 @@ Summary:        %{summary}
 
 
 %build
+sed -i '1{/^#!\//d}' src/*.py
 %py3_build
 
 
