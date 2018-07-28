@@ -3,4 +3,4 @@
 .PHONY: srpm
 
 srpm:
-	bash ../build.py $(outdir)
+	python3 ../build.py $(outdir)
