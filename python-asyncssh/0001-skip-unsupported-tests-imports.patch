@@ -1,0 +1,46 @@
+--- a/tests/sspi_stub.py	2018-02-06 05:51:54.000000000 +0100
++++ b/tests/sspi_stub.py	2018-07-28 17:13:37.388119595 +0200
+@@ -12,8 +12,12 @@
+ 
+ """Stub SSPI module for unit tests"""
+ 
+-from asyncssh.gss_win32 import ASC_RET_INTEGRITY, ISC_RET_INTEGRITY
+-from asyncssh.gss_win32 import SECPKG_ATTR_NATIVE_NAMES, SSPIError
++import platform
++# on non-windows systems, work around setup.py test discovery
++# importing everything
++if platform.system() == 'Windows':
++    from asyncssh.gss_win32 import ASC_RET_INTEGRITY, ISC_RET_INTEGRITY
++    from asyncssh.gss_win32 import SECPKG_ATTR_NATIVE_NAMES, SSPIError
+ 
+ from .gss_stub import step
+ 
+--- a/tests/test_public_key.py	2018-07-10 07:49:11.000000000 +0200
++++ b/tests/test_public_key.py	2018-07-28 17:08:28.388883880 +0200
+@@ -26,6 +26,7 @@
+ import shutil
+ import subprocess
+ import sys
++import unittest
+ 
+ import asyncssh
+ 
+@@ -1968,11 +1969,13 @@
+                         '-param_enc explicit' % curve)
+                     asyncssh.read_private_key('priv')
+ 
+-            with self.subTest('Import EC key with unknown explicit parameters'):
+-                run('openssl ecparam -out priv -noout -genkey -name secp112r1 '
+-                    '-param_enc explicit')
+-                with self.assertRaises(asyncssh.KeyImportError):
+-                    asyncssh.read_private_key('priv')
++    @unittest.skipIf(b'secp112r1' not in run('openssl ecparam -list_curves'),
++            "this openssl doesn't support secp112r1")
++    @unittest.skipIf(not _openssl_available, "openssl isn't available")
++    def test_ec_explicit_unk(self):
++        """Import EC key with unknown explicit parameters"""
++        with self.assertRaises(asyncssh.KeyImportError):
++                asyncssh.read_private_key('priv')
+ 
+     def test_generate_errors(self):
+         """Test errors in private key and certificate generation"""
