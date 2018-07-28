@@ -15,6 +15,7 @@ Summary:        Lossless images to PDF conversion library and command
 License:        LGPLv3+
 URL:            https://pypi.org/project/img2pdf
 Source0:        https://files.pythonhosted.org/packages/source/i/%{srcname}/%{srcname}-%{version}.tar.gz
+#sha256(Source0) = 140b70fa3a3bfb54e92947818cee01483a4f1492b5d1d02b0f649257f5ffc9ae
 
 BuildArch:      noarch
 
