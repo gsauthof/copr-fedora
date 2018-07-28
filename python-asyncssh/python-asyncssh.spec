@@ -49,7 +49,7 @@ Summary:        %{summary}
 %{__python3} setup.py test
 
 %files -n python3-asyncssh
-%license LICENSE
+%license LICENSE COPYRIGHT
 %doc README.rst examples
 %{python3_sitelib}/*
 
