@@ -18,6 +18,9 @@ Patch0001:      0001-skip-unsupported-tests-imports.patch
 
 BuildArch:      noarch
 
+# required for py3_build macro
+BuildRequires:  python3-devel
+
 # required by setup.py test
 BuildRequires:  openssh
 BuildRequires:  openssl
