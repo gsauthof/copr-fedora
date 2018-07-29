@@ -59,6 +59,10 @@ def rpmbuild_yield_urls(specfile):
                 stderr=subprocess.DEVNULL, universal_newlines=True)
         yield from yield_urls(xs)
 
+def rpmspec_yield_urls(specfile):
+    xs = subprocess.check_output(['rpmspec', '-P', specfile],
+            universal_newlines=True)
+    yield from yield_urls(xs)
 
 def get_checksums(specfile):
     d = {}
@@ -106,7 +110,7 @@ def main():
     specdir = os.getcwd()
     specfile = glob.glob('*.spec')[0]
     print_git()
-    urls = rpmbuild_yield_urls(specfile)
+    urls = rpmspec_yield_urls(specfile)
     checksums = get_checksums(specfile)
     verify_sources(urls, checksums)
     build_srpm(specdir, outdir, specfile)
