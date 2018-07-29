@@ -24,6 +24,10 @@ BuildRequires:  python3-devel
 # required by setup.py test
 BuildRequires:  openssh
 BuildRequires:  openssl
+BuildRequires:  python3-bcrypt
+BuildRequires:  python3-gssapi
+BuildRequires:  python3-libnacl
+BuildRequires:  python3-pyOpenSSL
 
 BuildRequires:  python3-cryptography
 Requires:       python3-cryptography
