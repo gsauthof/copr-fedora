@@ -9,6 +9,7 @@ import hashlib
 import os
 import subprocess
 import sys
+import tempfile
 
 def print_git():
     changeset = open('../.git/refs/heads/master').read().strip()
@@ -24,12 +25,40 @@ def download(url):
     print('done.')
     return filename
 
-def get_sources(specfile):
+
+def yield_urls(output):
+    for line in output.splitlines():
+        if line.startswith('Source') or line.startswith('Patch'):
+            x = line.split()
+            x[0] = x[0].strip(':')
+            yield x
+
+def spectool_yield_urls(specfile):
     xs = subprocess.check_output(['spectool', specfile],
             universal_newlines=True)
-    return [ (x[0].strip(':'), x[1])
-            for x in (x.split() for x in xs.splitlines() )
-            if x[0].startswith('Source') ]
+    yield from yield_urls(xs)
+
+def rpmbuild_yield_urls(specfile):
+    with tempfile.TemporaryDirectory() as td, open(specfile) as f:
+        with open(td + '/pkg.spec', 'w') as g:
+            sources = []
+            for line in f:
+                g.write(line)
+                if line.startswith('%prep'):
+                    print('cat << %EOF%', file=g)
+                    for source in sources:
+                        g.write(source)
+                    print('%EOF%', file=g)
+                    break
+                elif line.startswith('Source') or line.startswith('Patch'):
+                    sources.append(line)
+        xs = subprocess.check_output(['rpmbuild']
+                + sum((['--define', '_{}dir {}'.format(x, td) ]
+                    for x in ('top', 'source', 'build', 'srcrpm', 'rpm')), [])
+                + [ '--nodeps', '-bp', td + '/pkg.spec'],
+                stderr=subprocess.DEVNULL, universal_newlines=True)
+        yield from yield_urls(xs)
+
 
 def get_checksums(specfile):
     d = {}
@@ -52,8 +81,10 @@ def sha256sum(filename):
             h.update(b)
     return h.hexdigest()
 
-def verify_sources(sources, checksums):
-    for key, url in sources:
+def verify_sources(urls, checksums):
+    for key, url in urls:
+        if '://' not in url:
+            continue
         filename = download(url)
         checksum = sha256sum(filename)
         if checksum != checksums[key]:
@@ -75,9 +106,9 @@ def main():
     specdir = os.getcwd()
     specfile = glob.glob('*.spec')[0]
     print_git()
-    sources = get_sources(specfile)
+    urls = rpmbuild_yield_urls(specfile)
     checksums = get_checksums(specfile)
-    verify_sources(sources, checksums)
+    verify_sources(urls, checksums)
     build_srpm(specdir, outdir, specfile)
 
 if __name__ == '__main__':

@@ -16,4 +16,7 @@ only if they match calls `rpmbuild`.
 The checksums are specified as special comments in the spec
 files.
 
+See also a [related discussion][2] in the rpm issue tracker.
+
 [1]: https://github.com/gsauthof/copr-epel#design-decisions
+[2]: https://github.com/rpm-software-management/rpm/issues/463
