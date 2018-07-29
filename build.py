@@ -5,6 +5,7 @@
 # 2018, Georg Sauthoff <mail@gms.tf>, GPLv3+
 
 import glob
+import hashlib
 import os
 import subprocess
 import sys
@@ -43,13 +44,13 @@ def get_checksums(specfile):
                 d[key] = checksum
     return d
 
+# cf. https://stackoverflow.com/a/44873382/427158
 def sha256sum(filename):
-    s = subprocess.check_output(['sha256sum', filename],
-            universal_newlines=True)
-    checksum = s.split()[0]
-    if not checksum:
-        raise RuntimeError('Empty checksum for: {}'.format(filename))
-    return checksum
+    h = hashlib.sha256()
+    with open(filename, 'rb', buffering=0) as f:
+        for b in iter(lambda : f.read(128*1024), b''):
+            h.update(b)
+    return h.hexdigest()
 
 def verify_sources(sources, checksums):
     for key, url in sources:
