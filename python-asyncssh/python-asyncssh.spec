@@ -4,7 +4,7 @@ server-side SSH communication. It uses the Python asyncio module and\
 implements many SSH protocol features such as the various channels,\
 SFTP, SCP, forwarding, session multiplexing over a connection and more.
 
-Name:           python-asyncssh
+Name:           python-%{srcname}
 Version:        1.13.3
 Release:        1%{?dist}
 Summary:        Asynchronous SSH for Python
@@ -32,20 +32,31 @@ BuildRequires:  python3-pyOpenSSL
 BuildRequires:  python3-cryptography
 Requires:       python3-cryptography
 
+# for ed25519 etc.
+Recommends:     python3-libnacl
+
+# for OpenSSH private key encryption
+Suggests:       python3-bcrypt
+# for GSSAPI key exchange/authentication
+Suggests:       python3-gssapi
+# for X.509 certificate authentication
+Suggests:       python3-pyOpenSSL
+
 %description
 %{desc}
 
-%package -n python3-asyncssh
+%package -n python3-%{srcname}
 Summary:        %{summary}
-%{?python_provide:%python_provide python3-asyncssh}
+%{?python_provide:%python_provide python3-%{srcname}}
 
-%description -n python3-asyncssh
+%description -n python3-%{srcname}
 %{desc}
 
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
 
 %build
+sed -i '1,1s@^#!.*$@#!/usr/bin/python3@' examples/*.py
 %py3_build
 
 
@@ -55,7 +66,7 @@ Summary:        %{summary}
 %check
 %{__python3} setup.py test
 
-%files -n python3-asyncssh
+%files -n python3-%{srcname}
 %license LICENSE COPYRIGHT
 %doc README.rst examples
 %{python3_sitelib}/*
