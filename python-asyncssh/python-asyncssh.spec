@@ -56,7 +56,7 @@ Summary:        %{summary}
 %autosetup -p1 -n %{srcname}-%{version}
 
 %build
-sed -i '1,1s@^#!.*$@#!/usr/bin/python3@' examples/*.py
+sed -i '1,1s@^#!.*$@#!%{__python3}@' examples/*.py
 %py3_build
 
 
