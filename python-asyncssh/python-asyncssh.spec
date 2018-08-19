@@ -69,7 +69,8 @@ sed -i '1,1s@^#!.*$@#!%{__python3}@' examples/*.py
 %files -n python3-%{srcname}
 %license LICENSE COPYRIGHT
 %doc README.rst examples
-%{python3_sitelib}/*
+%{python3_sitelib}/%{srcname}/
+%{python3_sitelib}/%{srcname}-*-py*.egg-info/
 
 
 %changelog
