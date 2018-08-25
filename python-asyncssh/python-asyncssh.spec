@@ -15,6 +15,7 @@ Source0:        %pypi_source
 #sha256(Source0) = eb5b190badc5cd2a506a1b6ced3e92f948166974eef7d1abab61acc67aa379e6
 
 Patch0001:      0001-skip-unsupported-tests-imports.patch
+Patch0002:      0002-Make-maximum-time_t-computation-more-portable.patch
 
 BuildArch:      noarch
 
