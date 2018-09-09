@@ -5,17 +5,14 @@ implements many SSH protocol features such as the various channels,\
 SFTP, SCP, forwarding, session multiplexing over a connection and more.
 
 Name:           python-%{srcname}
-Version:        1.13.3
+Version:        1.14.0
 Release:        1%{?dist}
 Summary:        Asynchronous SSH for Python
 
-License:        EPL-1.0
+License:        EPL-2.0 or GPLv2+
 URL:            https://github.com/ronf/asyncssh
 Source0:        %pypi_source
-#sha256(Source0) = eb5b190badc5cd2a506a1b6ced3e92f948166974eef7d1abab61acc67aa379e6
-
-Patch0001:      0001-skip-unsupported-tests-imports.patch
-Patch0002:      0002-Make-maximum-time_t-computation-more-portable.patch
+#sha256(Source0) = a80025ffa5f4f9a4d1aa6883f2b187fe536fa19e7d012027f57228608e2a3138
 
 BuildArch:      noarch
 
@@ -75,5 +72,7 @@ sed -i '1,1s@^#!.*$@#!%{__python3}@' examples/*.py
 
 
 %changelog
+* Sun Sep  9 2018 Georg Sauthoff <mail@gms.tf> - 1.14.0-1
+- Update to latest upstream version
 * Sat Jul 28 2018 Georg Sauthoff <mail@gms.tf> - 1.13.3-1
 - initial packaging
