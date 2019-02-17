@@ -8,19 +8,28 @@ smaller PDF files than an ImageMagick convert command.\
 The img2pdf command complements the pdfimages command.
 
 Name:           python-%{srcname}
-Version:        0.3.2
-Release:        2%{?dist}
+Version:        0.3.3
+Release:        1%{?dist}
 Summary:        Lossless images to PDF conversion library and command
 
 License:        LGPLv3+
 URL:            https://pypi.org/project/img2pdf
 Source0:        %pypi_source
-#sha256(Source0) = 28eaf39e90997979893c4e64be5b23c8fbb1122688a28df127c957388b7d9d1f
+#sha256(Source0) = 9d77c17ee65a736abe92ef8cba9cca009c064ea4ed74492c01aea596e41856cf
 
 Patch0:         pdf-cmp.diff
 
 BuildArch:      noarch
 
+# required for test.sh
+BuildRequires:  ImageMagick
+BuildRequires:  ghostscript
+BuildRequires:  libtiff-tools
+BuildRequires:  mupdf
+BuildRequires:  netpbm-progs
+BuildRequires:  perl-Image-ExifTool
+BuildRequires:  poppler-utils
+# other requirements
 BuildRequires:  python3-devel
 BuildRequires:  python3-pillow
 BuildRequires:  python3-pdfrw
@@ -43,7 +52,7 @@ Summary:        %{summary}
 %build
 sed -i '1{/^#!\//d}' src/*.py
 %py3_build
-
+bash -x test.sh
 
 %install
 %py3_install
@@ -61,6 +70,10 @@ sed -i '1{/^#!\//d}' src/*.py
 
 
 %changelog
+* Sun Feb 17 2019 Georg Sauthoff <mail@gms.tf> - 0.3.3-1
+- Update to latest upstream version
+* Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 * Sat Dec 15 2018 Georg Sauthoff <mail@gms.tf> - 0.3.2-2
 - Fix unittest false-negatives on aarch64
 * Sat Nov 24 2018 Georg Sauthoff <mail@gms.tf> - 0.3.2-1
