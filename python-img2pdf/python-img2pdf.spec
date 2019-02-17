@@ -17,7 +17,8 @@ URL:            https://pypi.org/project/img2pdf
 Source0:        %pypi_source
 #sha256(Source0) = 9d77c17ee65a736abe92ef8cba9cca009c064ea4ed74492c01aea596e41856cf
 
-Patch0:         pdf-cmp.diff
+# Integrated upstream
+#Patch0:         pdf-cmp.diff
 
 BuildArch:      noarch
 
