@@ -58,7 +58,7 @@ rm %{buildroot}%{_libdir}/*.la
 %license COPYING
 %doc README ChangeLog AUTHORS
 %{_libdir}/libcourier-unicode.so.4
-%{_libdir}/libcourier-unicode.so.4.0.0
+%{_libdir}/libcourier-unicode.so.4.1.0
 
 %files devel
 %{_includedir}/courier-unicode.h
