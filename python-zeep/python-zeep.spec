@@ -27,7 +27,7 @@ BuildRequires: python3-lxml >= 3.1.0
 BuildRequires: python3-requests >= 2.7.0
 BuildRequires: python3-requests-toolbelt >= 0.7.1
 BuildRequires: python3-six >= 1.9.0
-BuildRequires: pytz
+BuildRequires: python3-pytz
 
 ## for tests
 BuildRequires: python3-freezegun >= 0.3.8
