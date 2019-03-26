@@ -5,7 +5,7 @@ implements many SSH protocol features such as the various channels,\
 SFTP, SCP, forwarding, session multiplexing over a connection and more.
 
 Name:           python-%{srcname}
-Version:        1.16.0
+Version:        1.15.1
 Release:        1%{?dist}
 Summary:        Asynchronous SSH for Python
 
@@ -72,8 +72,8 @@ sed -i '1,1s@^#!.*$@#!%{__python3}@' examples/*.py
 
 %changelog
 
-* Tue Mar 26 2019 Georg Sauthoff <mail@gms.tf> - 1.16.0-1
-- Update to latest upstream version
+* Tue Mar 26 2019 Georg Sauthoff <mail@gms.tf> - 1.15.1-1
+- Update to more recent upstream version
 * Sat Dec  8 2018 Georg Sauthoff <mail@gms.tf> - 1.15.0-1
 - Update to latest upstream version
 * Sun Sep  9 2018 Georg Sauthoff <mail@gms.tf> - 1.14.0-1
