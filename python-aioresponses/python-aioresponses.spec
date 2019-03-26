@@ -1,8 +1,7 @@
 %global         srcname  aioresponses
-%global         desc     Aioresponses is a helper to mock/fake \
-web requests in python aiohttp package.\
-The purpose of this package is to provide an easy way \
-to test asynchronous HTTP requests.
+%global         desc     Aioresponses is a helper to mock/fake web requests in the python\
+aiohttp package. The purpose of this package is to provide an\
+easy way  to test asynchronous HTTP requests.
 
 Name:           python-%{srcname}
 Version:        0.6.0

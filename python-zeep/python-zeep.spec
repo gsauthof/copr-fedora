@@ -1,8 +1,7 @@
 %global         srcname  zeep
-%global         desc     Zeep inspects the WSDL document and\
- generates the corresponding code to use the services and\
- types in the document. This provides an easy to use\
- programmatic interface to a SOAP server.
+%global         desc     Zeep inspects the WSDL document and generates the corresponding\
+code to use the services and types in the document. This\
+provides an easy to use programmatic interface to a SOAP server.
 
 Name:           python-%{srcname}
 Version:        3.3.1
