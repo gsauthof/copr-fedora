@@ -43,6 +43,9 @@ Summary:        %{summary}
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
 
+# disable one test that connects to httpbin.org
+sed -i 's/def \(test_address_as_instance_of_url_combined_with_pass_through\)(/def skip_\1(/' tests/test_aioresponses.py
+
 %build
 %py3_build
 
