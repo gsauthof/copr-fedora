@@ -13,6 +13,11 @@ License:        EPL-2.0 or GPLv2+
 URL:            https://github.com/ronf/asyncssh
 Source0:        %pypi_source
 
+# Fix some tests that deal with invalid keys
+# cf. https://github.com/ronf/asyncssh/issues/202
+
+Patch0:         test-invalid-key.diff
+
 BuildArch:      noarch
 
 # required for py3_build macro
