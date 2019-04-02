@@ -8,7 +8,7 @@ Version:        3.3.1
 Release:        1%{?dist}
 Summary:        A fast and modern Python SOAP client
 
-License:        MIT
+License:        MIT and BSD
 URL:            https://github.com/mvantellingen/python-zeep
 Source0:        %pypi_source
 
