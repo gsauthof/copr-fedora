@@ -2,8 +2,8 @@
 %global         desc     This is a python module for interfacing the “Internetmarke” API provided by the\
 German postal company “Deutsche Post”. It implements V3 of this API.\
 \
-The Internetmarke API allwos you to buy online franking for national and\
-international postal products like post cardsd and letters of all weight\
+The Internetmarke API allows you to buy online franking for national and\
+international postal products like post cards and letters of all weight\
 classes and service classes (normal, registered, …).
 
 Name:           python-%{srcname}
