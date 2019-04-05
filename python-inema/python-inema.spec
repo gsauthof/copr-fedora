@@ -1,10 +1,10 @@
 %global         srcname  inema
-%global         desc     This is a python module for interfacing the “Internetmarke” API provided by the\
-German postal company “Deutsche Post”. It implements V3 of this API.\
+%global         desc     This is a python module for interfacing the "Internetmarke" API provided by the\
+German postal company "Deutsche Post". It implements V3 of this API.\
 \
 The Internetmarke API allows you to buy online franking for national and\
 international postal products like post cards and letters of all weight\
-classes and service classes (normal, registered, …).
+classes and service classes (normal, registered, ...).
 
 Name:           python-%{srcname}
 Version:        0.6
@@ -39,6 +39,7 @@ Summary:        %{summary}
 %autosetup -p1 -n %{srcname}-%{version}
 
 %build
+sed -i '1,1s@^#!.*$@@' inema/frank.py inema/inema.py
 %py3_build
 
 
