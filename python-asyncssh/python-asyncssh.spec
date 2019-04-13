@@ -76,6 +76,8 @@ sed -i '1,1s@^#!.*$@#!%{__python3}@' examples/*.py
 - Update to latest upstream version
 * Tue Mar 26 2019 Georg Sauthoff <mail@gms.tf> - 1.15.1-1
 - Update to more recent upstream version
+* Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.15.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 * Sat Dec  8 2018 Georg Sauthoff <mail@gms.tf> - 1.15.0-1
 - Update to latest upstream version
 * Sun Sep  9 2018 Georg Sauthoff <mail@gms.tf> - 1.14.0-1
