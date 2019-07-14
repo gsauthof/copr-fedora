@@ -7,7 +7,7 @@ international postal products like post cards and letters of all weight\
 classes and service classes (normal, registered, ...).
 
 Name:           python-%{srcname}
-Version:        0.6
+Version:        0.8
 Release:        1%{?dist}
 Summary:        A Python interface to the Deutsche Post Internetmarke Online Franking
 
@@ -21,6 +21,7 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 
 # from setup.py
+BuildRequires: python3-pytz
 BuildRequires: python3-zeep
 
 %{?python_enable_dependency_generator}
@@ -55,5 +56,7 @@ sed -i '1,1s@^#!.*$@@' inema/frank.py inema/inema.py
 
 %changelog
 
+* Sun Jul 14 2019 Georg Sauthoff <mail@gms.tf> - 0.8-1
+- Update to latest upstream version
 * Wed Mar 27 2019 Georg Sauthoff <mail@gms.tf> - 0.6-1
 - initial packaging
