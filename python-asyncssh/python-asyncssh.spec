@@ -6,7 +6,7 @@ SFTP, SCP, forwarding, session multiplexing over a connection and more.
 
 Name:           python-%{srcname}
 Version:        1.16.1
-Release:        1%{?dist}
+Release:        4%{?dist}
 Summary:        Asynchronous SSH for Python
 
 License:        EPL-2.0 or GPLv2+
@@ -71,6 +71,15 @@ sed -i '1,1s@^#!.*$@#!%{__python3}@' examples/*.py
 
 
 %changelog
+* Thu Oct 03 2019 Miro Hrončok <mhroncok@redhat.com> - 1.16.1-4
+- Rebuilt for Python 3.8.0rc1 (#1748018)
+
+* Mon Aug 19 2019 Miro Hrončok <mhroncok@redhat.com> - 1.16.1-3
+- Rebuilt for Python 3.8
+
+* Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.16.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 
 * Sat Apr 13 2019 Georg Sauthoff <mail@gms.tf> - 1.16.1-1
 - Update to latest upstream version
