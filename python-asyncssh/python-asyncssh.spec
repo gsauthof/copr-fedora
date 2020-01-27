@@ -71,7 +71,7 @@ sed -i '1,1s@^#!.*$@#!%{__python3}@' examples/*.py
 
 
 %changelog
-* Sat Apr 13 2019 Georg Sauthoff <mail@gms.tf> - 2.1.0-1
+* Mon Jan 27 2020 Georg Sauthoff <mail@gms.tf> - 2.1.0-1
 - Update to latest upstream version
 
 * Thu Oct 03 2019 Miro Hrončok <mhroncok@redhat.com> - 1.16.1-4
