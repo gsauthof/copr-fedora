@@ -24,6 +24,7 @@ BuildRequires:  ghostscript
 BuildRequires:  libtiff-tools
 BuildRequires:  mupdf
 BuildRequires:  netpbm-progs
+BuildRequires:  python3-numpy
 BuildRequires:  perl-Image-ExifTool
 BuildRequires:  poppler-utils
 # other requirements
