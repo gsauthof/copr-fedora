@@ -16,6 +16,8 @@ License:        LGPLv3+
 URL:            https://pypi.org/project/img2pdf
 Source0:        %pypi_source
 
+Patch0:         verbose-test.diff
+
 BuildArch:      noarch
 
 # required for test.sh
