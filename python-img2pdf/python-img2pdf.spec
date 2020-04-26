@@ -17,6 +17,8 @@ URL:            https://pypi.org/project/img2pdf
 Source0:        %pypi_source
 
 Patch0:         verbose-test.diff
+# cf. https://gitlab.mister-muffin.de/josch/img2pdf/commit/9d184ad0cdf50987ecae7f50a1c8189dbae30aae
+Patch0:         test-magic.diff
 
 BuildArch:      noarch
 
