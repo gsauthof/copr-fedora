@@ -66,6 +66,7 @@ bash -x test.sh
 
 %files -n python3-%{srcname}
 %{_bindir}/%{srcname}
+%{_bindir}/%{srcname}-gui
 %{python3_sitelib}/%{srcname}.py
 %{python3_sitelib}/jp2.py
 %{python3_sitelib}/__pycache__/*
@@ -74,7 +75,7 @@ bash -x test.sh
 
 
 %changelog
-* Sun 26 Apr 2020 Georg Sauthoff <mail@gms.tf> - 0.3.4-1
+* Sun Apr 26 2020 Georg Sauthoff <mail@gms.tf> - 0.3.4-1
 - Update to latest upstream version
 
 * Thu Jan 30 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.2-7
