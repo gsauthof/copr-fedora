@@ -27,7 +27,7 @@ BuildRequires:  netpbm-progs
 BuildRequires:  perl-Image-ExifTool
 BuildRequires:  poppler-utils
 BuildRequires:  python3-numpy
-BuildRequires:  python3-python3-scipy
+BuildRequires:  python3-scipy
 # other requirements
 BuildRequires:  python3-devel
 BuildRequires:  python3-pillow
