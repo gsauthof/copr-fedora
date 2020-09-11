@@ -82,7 +82,7 @@ sed -i -e "s/\('\(isort\|flake\)\)/# \1/"  -e "s/\('[A-Za-z_-]\+\)==/\1>=/"  set
 %py3_install
 
 %check
-%{__python3} -m pytest tests
+PYTHONPATH=src %{__python3} -m pytest tests
 
 %files -n python3-%{srcname}
 %license LICENSE

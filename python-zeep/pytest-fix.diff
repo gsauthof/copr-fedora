@@ -22,3 +22,24 @@ diff -ur zeep-3.4.0.orig/tests/test_wsse_signature.py zeep-3.4.0/tests/test_wsse
  @pytest.mark.parametrize("digest_method,expected_digest_href", DIGEST_METHODS_TESTDATA)
  @pytest.mark.parametrize(
      "signature_method,expected_signature_href", SIGNATURE_METHODS_TESTDATA
+diff -ur zeep-3.4.0.orig/tests/test_xsd_validation.py zeep-3.4.0/tests/test_xsd_validation.py
+--- zeep-3.4.0.orig/tests/test_xsd_validation.py	2019-03-10 08:47:42.000000000 +0100
++++ zeep-3.4.0/tests/test_xsd_validation.py	2020-09-11 10:54:30.482869807 +0200
+@@ -39,7 +39,7 @@
+ 
+     with pytest.raises(exceptions.ValidationError) as exc:
+         result = render_node(container_elm, obj)
+-    assert "Missing element item (container.item)" in str(exc)
++    assert "Missing element item" in str(exc)
+ 
+     obj.item = "bar"
+     result = render_node(container_elm, obj)
+@@ -81,7 +81,7 @@
+ 
+     with pytest.raises(exceptions.ValidationError) as exc:
+         result = render_node(container_elm, obj)
+-    assert "The attribute item is not valid: Value is required (container.item)" in str(
++    assert "The attribute item is not valid: Value is required" in str(
+         exc
+     )
+ 
