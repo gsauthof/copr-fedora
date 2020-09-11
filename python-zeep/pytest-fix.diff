@@ -1,0 +1,24 @@
+diff -ur zeep-3.4.0.orig/tests/conftest.py zeep-3.4.0/tests/conftest.py
+--- zeep-3.4.0.orig/tests/conftest.py	2019-03-10 08:47:42.000000000 +0100
++++ zeep-3.4.0/tests/conftest.py	2020-09-11 09:38:26.851747012 +0200
+@@ -11,7 +11,7 @@
+ 
+ @pytest.fixture(autouse=True)
+ def no_requests(request, monkeypatch):
+-    if request.node.get_marker("requests"):
++    if request.node.get_closest_marker("requests"):
+         return
+ 
+     def func(*args, **kwargs):
+diff -ur zeep-3.4.0.orig/tests/test_wsse_signature.py zeep-3.4.0/tests/test_wsse_signature.py
+--- zeep-3.4.0.orig/tests/test_wsse_signature.py	2019-05-10 15:10:54.000000000 +0200
++++ zeep-3.4.0/tests/test_wsse_signature.py	2020-09-10 22:51:24.446365843 +0200
+@@ -187,7 +187,7 @@
+     plugin.verify(envelope)
+ 
+ 
+-@pytest.mark.skipif(sys.platform == "win32", reason="does not run on windows")
++@skip_if_no_xmlsec
+ @pytest.mark.parametrize("digest_method,expected_digest_href", DIGEST_METHODS_TESTDATA)
+ @pytest.mark.parametrize(
+     "signature_method,expected_signature_href", SIGNATURE_METHODS_TESTDATA
