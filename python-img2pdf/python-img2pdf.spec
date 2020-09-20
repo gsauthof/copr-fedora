@@ -16,6 +16,9 @@ License:        LGPLv3+
 URL:            https://pypi.org/project/img2pdf
 Source0:        %pypi_source
 
+# XXX TODO remove when upstream
+Patch0:         test-byteorder.diff
+
 BuildArch:      noarch
 
 # cf. Bug 1851638 - img2pdf fails to build on s390x because of issues in the ImageMagick dependency
@@ -69,10 +72,15 @@ sed -i '1{/^#!\//d}' src/*.py
 %py3_install
 
 %check
-# TODO remove as pytest seems to be the future here
+# XXX TODO remove as pytest seems to be the future here
 #%{__python3} setup.py test
 #bash -x test.sh
 
+# since the test directly calls src/img2pdf.py
+# (file is already installed at this point)
+sed -i '1i#!'%{__python3} src/img2pdf.py
+# XXX TODO remove when upstream
+sed -i 's/assert identify\[0\]\["image"\]\.get("endianess")/assert get_byteorder(identify)/' src/img2pdf_test.py
 PYTHONPATH=src %{__python3} -m pytest src/img2pdf_test.py
 
 %files -n python3-%{srcname}
