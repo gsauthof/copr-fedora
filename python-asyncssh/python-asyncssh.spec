@@ -5,8 +5,8 @@ implements many SSH protocol features such as the various channels,\
 SFTP, SCP, forwarding, session multiplexing over a connection and more.
 
 Name:           python-%{srcname}
-Version:        2.1.0
-Release:        1%{?dist}
+Version:        2.2.1
+Release:        4%{?dist}
 Summary:        Asynchronous SSH for Python
 
 License:        EPL-2.0 or GPLv2+
@@ -17,6 +17,8 @@ BuildArch:      noarch
 
 # required for py3_build macro
 BuildRequires:  python3-devel
+
+BuildRequires:  python3-setuptools
 
 # required by setup.py test
 BuildRequires:  openssh
@@ -38,6 +40,8 @@ Suggests:       python3-bcrypt
 Suggests:       python3-gssapi
 # for X.509 certificate authentication
 Suggests:       python3-pyOpenSSL
+# for U2F etc. support
+Suggests:       python3-fido2
 
 %description
 %{desc}
@@ -71,6 +75,22 @@ sed -i '1,1s@^#!.*$@#!%{__python3}@' examples/*.py
 
 
 %changelog
+* Tue Jul 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.1-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
+
+* Fri Jun 26 2020 Georg Sauthoff <mail@gms.tf> - 2.2.1-3
+- Be more explicit regarding setuptools depenency,
+  cf. https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/message/GCPGM34ZGEOVUHSBGZTRYR5XKHTIJ3T7/
+
+* Tue May 26 2020 Miro Hrončok <mhroncok@redhat.com> - 2.2.1-2
+- Rebuilt for Python 3.9
+
+* Fri May 01 2020 Georg Sauthoff <mail@gms.tf> - 2.2.1-1
+- Update to latest upstream version
+
+* Thu Jan 30 2020 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Mon Jan 27 2020 Georg Sauthoff <mail@gms.tf> - 2.1.0-1
 - Update to latest upstream version
 
