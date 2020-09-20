@@ -8,21 +8,13 @@ smaller PDF files than an ImageMagick convert command.\
 The img2pdf command complements the pdfimages command.
 
 Name:           python-%{srcname}
-Version:        0.3.4
-Release:        6%{?dist}
+Version:        0.4.0
+Release:        1%{?dist}
 Summary:        Lossless images to PDF conversion library and command
 
 License:        LGPLv3+
 URL:            https://pypi.org/project/img2pdf
 Source0:        %pypi_source
-
-Patch0:         verbose-test.diff
-# TODO remove with next upstream version
-# cf. https://gitlab.mister-muffin.de/josch/img2pdf/commit/9d184ad0cdf50987ecae7f50a1c8189dbae30aae
-Patch1:         test-magic.diff
-# TODO remove with next upstream version
-# cf. https://gitlab.mister-muffin.de/josch/img2pdf/commit/559d42cd4aed08333145c776878c7134bba2acf9
-Patch2:         test-compress.diff
 
 BuildArch:      noarch
 
@@ -30,7 +22,8 @@ BuildArch:      noarch
 # https://bugzilla.redhat.com/show_bug.cgi?id=1851638
 ExcludeArch:    s390x
 
-# required for test.sh
+# required for tests
+BuildRequires:  python3-pytest
 BuildRequires:  ImageMagick
 BuildRequires:  ghostscript
 BuildRequires:  libtiff-tools
@@ -47,9 +40,12 @@ BuildRequires:  python3-setuptools
 
 
 BuildRequires:  python3-pillow
+# TODO will be removed in some future img2pdf release
+# cf. https://gitlab.mister-muffin.de/josch/img2pdf/issues/74#note_1037
 BuildRequires:  python3-pdfrw
+BuildRequires:  python3-pikepdf
 
-Requires:       python3-pillow
+%{?python_enable_dependency_generator}
 
 %description
 %{desc}
@@ -73,11 +69,11 @@ sed -i '1{/^#!\//d}' src/*.py
 %py3_install
 
 %check
-%{__python3} setup.py test
-
-# Disable until test suite is more robust in next release,
-# cf. https://gitlab.mister-muffin.de/josch/img2pdf/issues/80
+# TODO remove as pytest seems to be the future here
+#%{__python3} setup.py test
 #bash -x test.sh
+
+PYTHONPATH=src %{__python3} -m pytest src/img2pdf_test.py
 
 %files -n python3-%{srcname}
 %{_bindir}/%{srcname}
@@ -90,6 +86,9 @@ sed -i '1{/^#!\//d}' src/*.py
 
 
 %changelog
+* Sun Sep 20 2020 Georg Sauthoff <mail@gms.tf> - 0.4.0-1
+- Update to latest upstream version
+
 * Wed Jul 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.4-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
