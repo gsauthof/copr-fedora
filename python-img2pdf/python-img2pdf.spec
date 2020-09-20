@@ -27,6 +27,8 @@ ExcludeArch:    s390x
 
 # required for tests
 BuildRequires:  python3-pytest
+                # for sRGB.icc:
+BuildRequires:  colord
 BuildRequires:  ImageMagick
 BuildRequires:  ghostscript
 BuildRequires:  libtiff-tools
@@ -81,6 +83,7 @@ sed -i '1{/^#!\//d}' src/*.py
 sed -i '1i#!'%{__python3} src/img2pdf.py
 # XXX TODO remove when upstream
 sed -i 's/assert identify\[0\]\["image"\]\.get("endianess")/assert get_byteorder(identify)/' src/img2pdf_test.py
+sed -i 's@"/usr/share/color/icc/sRGB.icc"@"/usr/share/color/icc/colord/sRGB.icc"@' src/img2pdf_test.py
 PYTHONPATH=src %{__python3} -m pytest src/img2pdf_test.py
 
 %files -n python3-%{srcname}
