@@ -45,6 +45,7 @@ BuildRequires: python3-mock
 BuildRequires: python3-pretend
 BuildRequires: python3-pytest-cov
 BuildRequires: python3-pytest
+BuildRequires: python3-requests-file
 BuildRequires: python3-requests-mock
 BuildRequires: python3-aioresponses
 BuildRequires: python3-pytest-asyncio
