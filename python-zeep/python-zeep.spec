@@ -4,17 +4,13 @@ code to use the services and types in the document. This\
 provides an easy to use programmatic interface to a SOAP server.
 
 Name:           python-%{srcname}
-Version:        3.4.0
-Release:        8%{?dist}
+Version:        4.0.0
+Release:        1%{?dist}
 Summary:        A fast and modern Python SOAP client
 
 License:        MIT and BSD
 URL:            https://github.com/mvantellingen/python-zeep
 Source0:        %pypi_source
-
-# Can probably dropped in releases > 3.4.0 as the changes are already
-# present in the master branch
-Patch0:         pytest-fix.diff
 
 BuildArch:      noarch
 # Since python-aiohttp excludes s390x we have to exclude it, as well
@@ -41,7 +37,6 @@ BuildRequires: python3-isodate
 BuildRequires: python3-lxml
 BuildRequires: python3-requests
 BuildRequires: python3-requests-toolbelt
-BuildRequires: python3-six
 BuildRequires: python3-pytz
 
 ## for tests
@@ -51,11 +46,9 @@ BuildRequires: python3-pretend
 BuildRequires: python3-pytest-cov
 BuildRequires: python3-pytest
 BuildRequires: python3-requests-mock
-BuildRequires: python3-pytest-tornado
 BuildRequires: python3-aioresponses
 BuildRequires: python3-pytest-asyncio
 BuildRequires: python3-xmlsec
-BuildRequires: python3-tornado
 
 %{?python_enable_dependency_generator}
 
@@ -93,6 +86,9 @@ PYTHONPATH=src %{__python3} -m pytest tests
 
 
 %changelog
+* Tue Nov 10 2020 Georg Sauthoff <mail@gms.tf> - 4.0.0-1
+- bump version
+
 * Fri Sep 11 2020 Georg Sauthoff <mail@gms.tf> - 3.4.0-8
 - add tornado dependency for tests
 - cleanup dependencies
