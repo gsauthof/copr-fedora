@@ -49,6 +49,9 @@ BuildRequires: python3-requests-file
 BuildRequires: python3-requests-mock
 BuildRequires: python3-aioresponses
 BuildRequires: python3-pytest-asyncio
+# as of 2020-11-10 not yet available in rawhide:
+# https://bugzilla.redhat.com/show_bug.cgi?id=1889431
+BuildRequires: python3-pytest-httpx
 BuildRequires: python3-xmlsec
 
 %{?python_enable_dependency_generator}
