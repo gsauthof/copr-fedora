@@ -5,7 +5,7 @@ provides an easy to use programmatic interface to a SOAP server.
 
 Name:           python-%{srcname}
 Version:        3.4.0
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        A fast and modern Python SOAP client
 
 License:        MIT and BSD
@@ -33,28 +33,29 @@ BuildRequires:  python3-setuptools
 
 
 # from setup.py
-BuildRequires: python3-appdirs >= 1.4.0
-BuildRequires: python3-attrs >= 17.2.0
-BuildRequires: python3-cached_property >= 1.3.0
-BuildRequires: python3-defusedxml >= 0.4.1
-BuildRequires: python3-isodate >= 0.5.4
-BuildRequires: python3-lxml >= 3.1.0
-BuildRequires: python3-requests >= 2.7.0
-BuildRequires: python3-requests-toolbelt >= 0.7.1
-BuildRequires: python3-six >= 1.9.0
+BuildRequires: python3-appdirs
+BuildRequires: python3-attrs
+BuildRequires: python3-cached_property
+BuildRequires: python3-defusedxml
+BuildRequires: python3-isodate
+BuildRequires: python3-lxml
+BuildRequires: python3-requests
+BuildRequires: python3-requests-toolbelt
+BuildRequires: python3-six
 BuildRequires: python3-pytz
 
 ## for tests
-BuildRequires: python3-freezegun >= 0.3.8
-BuildRequires: python3-mock >= 2.0.0
-BuildRequires: python3-pretend >= 1.0.8
-BuildRequires: python3-pytest-cov >= 2.5.1
-BuildRequires: python3-pytest >= 3.1.3
-BuildRequires: python3-requests-mock >= 0.7.0
-BuildRequires: python3-pytest-tornado >= 0.4.5
+BuildRequires: python3-freezegun
+BuildRequires: python3-mock
+BuildRequires: python3-pretend
+BuildRequires: python3-pytest-cov
+BuildRequires: python3-pytest
+BuildRequires: python3-requests-mock
+BuildRequires: python3-pytest-tornado
 BuildRequires: python3-aioresponses
 BuildRequires: python3-pytest-asyncio
 BuildRequires: python3-xmlsec
+BuildRequires: python3-tornado
 
 %{?python_enable_dependency_generator}
 
@@ -92,6 +93,10 @@ PYTHONPATH=src %{__python3} -m pytest tests
 
 
 %changelog
+* Fri Sep 11 2020 Georg Sauthoff <mail@gms.tf> - 3.4.0-8
+- add tornado dependency for tests
+- cleanup dependencies
+
 * Thu Sep 10 2020 Georg Sauthoff <mail@gms.tf> - 3.4.0-7
 - EPEL8: exclude s390x because of aiohttp
 - activate more tests
