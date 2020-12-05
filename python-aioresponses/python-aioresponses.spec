@@ -4,8 +4,8 @@ aiohttp package. The purpose of this package is to provide an\
 easy way  to test asynchronous HTTP requests.
 
 Name:           python-%{srcname}
-Version:        0.6.4
-Release:        3%{?dist}
+Version:        0.7.1
+Release:        1%{?dist}
 Summary:        Mock out requests made by ClientSession from aiohttp package
 
 License:        MIT
@@ -33,9 +33,6 @@ BuildRequires: python3-aiohttp
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-cov
 BuildRequires: python3-ddt
-# Disable for now since asynctest currently doesn't support Python 3.9
-# cf. https://github.com/pnuckowski/aioresponses/issues/162
-#BuildRequires: python3-asynctest
 
 %{?python_enable_dependency_generator}
 
@@ -76,6 +73,9 @@ rm tests/test_aioresponses.py
 
 
 %changelog
+* Sat Dec 05 2020 Georg Sauthoff <mail@gms.tf> - 0.7.1-1
+- bump version
+
 * Thu Sep 10 2020 Georg Sauthoff <mail@gms.tf> - 0.6.4-3
 - EPEL8: exclude s390x because of aiohttp
 
