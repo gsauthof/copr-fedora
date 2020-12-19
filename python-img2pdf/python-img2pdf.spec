@@ -9,7 +9,7 @@ The img2pdf command complements the pdfimages command.
 
 Name:           python-%{srcname}
 Version:        0.4.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Lossless images to PDF conversion library and command
 
 License:        LGPLv3+
@@ -27,6 +27,8 @@ BuildArch:      noarch
 # https://bugzilla.redhat.com/show_bug.cgi?id=1851638
 ExcludeArch:    s390x
 
+# Disable tests on EPEL8 for now, since some of the dependencies aren't available
+%if 0%{?rhel} == 0
 # required for tests
 BuildRequires:  python3-pytest
 BuildRequires:  ImageMagick
@@ -38,22 +40,35 @@ BuildRequires:  perl-Image-ExifTool
 BuildRequires:  poppler-utils
 BuildRequires:  python3-numpy
 BuildRequires:  python3-scipy
+%endif
 
 # other requirements
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 
 
+%if 0%{?rhel} == 0
 BuildRequires:  python3-pillow
 # TODO will be removed in some future img2pdf release
 # cf. https://gitlab.mister-muffin.de/josch/img2pdf/issues/74#note_1037
 BuildRequires:  python3-pdfrw
 BuildRequires:  python3-pikepdf
+%endif
 
+
+# EPEL8 doesn't provide any of pdfrw/pikepdf - however, img2pdf has it's own
+# PDF engine builtin, thus, these dependencies are optional on RHEL
+
+%if 0%{?rhel} == 0
 # this is basically equivalent to adding Requires: for
 # pikepdf
 # pillow
 %{?python_enable_dependency_generator}
+%else
+Requires:  python3-pillow
+%endif
+
+
 
 %description
 %{desc}
@@ -78,6 +93,7 @@ sed -i '1{/^#!\//d}' src/*.py
 
 %check
 
+%if 0%{?rhel} == 0
 # since the test directly calls src/img2pdf.py
 # (file is already installed at this point)
 sed -i '1i#!'%{__python3} src/img2pdf.py
@@ -87,6 +103,7 @@ sed -i 's/assert identify\[0\]\["image"\]\.get("endianess")/assert get_byteorder
 # XXX TODO remove -k in next release
 # cf. https://gitlab.mister-muffin.de/josch/img2pdf/issues/85
 PYTHONPATH=src %{__python3} -m pytest src/img2pdf_test.py -k 'not test_png_icc and not test_tiff_ccitt_nometa2'
+%endif
 
 %files -n python3-%{srcname}
 %{_bindir}/%{srcname}
@@ -99,6 +116,9 @@ PYTHONPATH=src %{__python3} -m pytest src/img2pdf_test.py -k 'not test_png_icc a
 
 
 %changelog
+* Sat Dec 19 2020 Georg Sauthoff <mail@gms.tf> - 0.4.0-2
+- Support EPEL8 (fixes fedora#1907226)
+
 * Sun Sep 20 2020 Georg Sauthoff <mail@gms.tf> - 0.4.0-1
 - Update to latest upstream version (fixes fedora#1867007)
 
