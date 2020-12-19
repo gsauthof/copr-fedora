@@ -28,7 +28,7 @@ BuildArch:      noarch
 ExcludeArch:    s390x
 
 # Disable tests on EPEL8 for now, since some of the dependencies aren't available
-%if 0%{?fedora}
+%if 0%{?epel} == 0
 # required for tests
 BuildRequires:  python3-pytest
 BuildRequires:  ImageMagick
@@ -47,7 +47,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 
 
-%if 0%{?fedora}
+%if 0%{?epel} == 0
 BuildRequires:  python3-pillow
 # TODO will be removed in some future img2pdf release
 # cf. https://gitlab.mister-muffin.de/josch/img2pdf/issues/74#note_1037
@@ -59,7 +59,7 @@ BuildRequires:  python3-pikepdf
 # EPEL8 doesn't provide any of pdfrw/pikepdf - however, img2pdf has it's own
 # PDF engine builtin, thus, these dependencies are optional on RHEL
 
-%if 0%{?fedora}
+%if 0%{?epel} == 0
 # this is basically equivalent to adding Requires: for
 # pikepdf
 # pillow
@@ -93,7 +93,7 @@ sed -i '1{/^#!\//d}' src/*.py
 
 %check
 
-%if 0%{?fedora}
+%if 0%{?epel} == 0
 # since the test directly calls src/img2pdf.py
 # (file is already installed at this point)
 sed -i '1i#!'%{__python3} src/img2pdf.py
