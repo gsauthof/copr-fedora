@@ -63,8 +63,11 @@ BuildRequires:  python3-pikepdf
 # this is basically equivalent to adding Requires: for
 # pikepdf
 # pillow
+#
+# the generator is enabled by default, since f30 or so
 %{?python_enable_dependency_generator}
 %else
+%{?python_disable_dependency_generator}
 Requires:  python3-pillow
 %endif
 
