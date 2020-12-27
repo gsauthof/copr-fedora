@@ -56,20 +56,12 @@ BuildRequires:  python3-pikepdf
 %endif
 
 
-# EPEL8 doesn't provide any of pdfrw/pikepdf - however, img2pdf has it's own
-# PDF engine builtin, thus, these dependencies are optional on RHEL
-
-%if 0%{?epel} == 0
 # this is basically equivalent to adding Requires: for
 # pikepdf
 # pillow
 #
 # the generator is enabled by default, since f30 or so
-%{?python_enable_dependency_generator}
-%else
-%{?python_disable_dependency_generator}
-Requires:  python3-pillow
-%endif
+#%{?python_enable_dependency_generator}
 
 
 
@@ -85,6 +77,16 @@ Summary:        %{summary}
 
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
+
+# disable in EPEL builds since pikepdf isn't available on CentOS 8/EPEL
+# (img2pdf then falls back to its internal PDF engine)
+#
+# alternatively, we could disable the python dependency generator, however as of 2020-12
+# the necessary disable macro isn't available in the epel8 build environment
+# cf. https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/message/SI5CXXV3MWMEH3PLKAVAJK22FRNI7OGM/
+%if 0%{?epel} != 0
+sed '/^INSTALL_REQUIRES/,/)/s/\("pikepdf".*$\)/### not available on EPEL ### \1/' setup.py
+%endif
 
 
 %build
