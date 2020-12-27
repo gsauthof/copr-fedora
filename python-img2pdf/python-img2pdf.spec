@@ -85,7 +85,7 @@ Summary:        %{summary}
 # the necessary disable macro isn't available in the epel8 build environment
 # cf. https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/message/SI5CXXV3MWMEH3PLKAVAJK22FRNI7OGM/
 %if 0%{?epel} != 0
-sed '/^INSTALL_REQUIRES/,/)/s/\("pikepdf".*$\)/### not available on EPEL ### \1/' setup.py
+sed -i '/^INSTALL_REQUIRES/,/)/s/\("pikepdf".*$\)/### not available on EPEL ### \1/' setup.py
 %endif
 
 
