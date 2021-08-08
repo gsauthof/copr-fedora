@@ -4,24 +4,19 @@
 Name: rubygem-%{gem_name}
 Version: 6.0.0
 Release: 1%{?dist}
-Summary: Upload code to gist.github.com
+Summary: Upload code to https://gist.github.com
 License: MIT
 URL: https://github.com/defunkt/gist
 Source0: https://rubygems.org/gems/%{gem_name}-%{version}.gem
 BuildRequires: ruby(release)
 BuildRequires: rubygems-devel
 BuildRequires: ruby
-%if 0%{?fedora} < 34
-BuildRequires: rubygem(ronn)
-%else
-BuildRequires: rubygem(ronn-ng)
-%endif
+BuildRequires: %{_bindir}/ronn
 BuildRequires: rubygem(webmock)
-BuildRequires: rubygem(rspec) > 3
 BuildArch: noarch
 
 %description
-Upload source code, text files and similar content to gist.github.com
+Upload source code, text files and similar content to https://gist.github.com
 or a local GitHub Enterprise instance.
 
 This package provides the gist command line utility and a single function
@@ -80,7 +75,7 @@ popd
 %license %{gem_instdir}/LICENSE.MIT
 %{gem_instdir}/bin
 %{gem_libdir}
-%{gem_instdir}/vendor
+%exclude %{gem_instdir}/vendor
 %exclude %{gem_cache}
 %{gem_spec}
 %{_mandir}/man1/%{gem_name}.1*
