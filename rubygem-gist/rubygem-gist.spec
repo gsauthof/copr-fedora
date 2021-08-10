@@ -4,7 +4,7 @@
 Name: rubygem-%{gem_name}
 Version: 6.0.0
 Release: 1%{?dist}
-Summary: Upload code to https://gist.github.com
+Summary: Upload content to https://gist.github.com
 License: MIT
 URL: https://github.com/defunkt/gist
 Source0: https://rubygems.org/gems/%{gem_name}-%{version}.gem
@@ -13,6 +13,7 @@ BuildRequires: rubygems-devel
 BuildRequires: ruby
 BuildRequires: %{_bindir}/ronn
 BuildRequires: rubygem(webmock)
+BuildRequires: rubygem(rspec)
 BuildArch: noarch
 
 %description
