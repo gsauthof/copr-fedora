@@ -96,13 +96,13 @@ sed -i '1i#!'%{__python3} src/img2pdf.py
 
 # XXX TODO remove in next release, if fixed
 # cf. https://gitlab.mister-muffin.de/josch/img2pdf/issues/85
-sed -i 's/endian = "endianess" if .* "endianness"/endian = "endianess" if "endianess" in  identify[0]["image"] else "endianness"/' src/img2pdf_test.py
-sed -i 's/if identify\[0\]\.get("version", "0") < "1\.0":/if False:/' src/img2pdf_test.py
+#sed -i 's/endian = "endianess" if .* "endianness"/endian = "endianess" if "endianess" in  identify[0]["image"] else "endianness"/' src/img2pdf_test.py
+#sed -i 's/if identify\[0\]\.get("version", "0") < "1\.0":/if False:/' src/img2pdf_test.py
 
 # XXX TODO remove -k if test cases are fixed
 # See also:
 # https://gitlab.mister-muffin.de/josch/img2pdf/issues/85 for: test_png_icc, test_tiff_ccitt_nometa2
-PYTHONPATH=src %{__python3} -m pytest src/img2pdf_test.py -k 'not test_png_icc and not test_tiff_ccitt_nometa2' -v
+PYTHONPATH=src %{__python3} -m pytest src/img2pdf_test.py -v #-k 'not test_png_icc and not test_tiff_ccitt_nometa2' -v
 
 %endif
 
